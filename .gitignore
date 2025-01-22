@@ -1,0 +1,43 @@
+# Directorios y archivos generados por Go
+/bin/
+/pkg/
+/out/
+
+# Archivos del módulo Go
+go.sum
+
+# Archivos generados por compilación
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+
+# Archivos de configuración local
+*.env
+configs/config.yaml
+
+# Archivos temporales
+*.tmp
+*.log
+*.swp
+*.lock
+
+# Archivos específicos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuración del IDE y editor
+.vscode/
+.idea/
+*.iml
+
+# Archivos relacionados con bases de datos (si generas dumps o backups locales)
+*.sql
+*.db
+
+# Archivos de Docker y contenedores (si usas Docker para despliegue)
+docker-compose.override.yml
+
+# Otros archivos sensibles
+secret_*.json
