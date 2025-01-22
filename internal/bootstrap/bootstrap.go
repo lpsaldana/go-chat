@@ -8,12 +8,19 @@ import (
 
 type AppDependencies struct {
 	UserHandler *handlers.UserHandler
+	ChatHandler *handlers.ChatHandler
 }
 
 func InitializeApp() (*AppDependencies, error) {
+	//user
 	userRepo := repositories.NewUserRepository()
 	userService := services.NewUserService(userRepo)
 	userHander := handlers.NewUserHandler(userService)
 
-	return &AppDependencies{UserHandler: userHander}, nil
+	//chat
+	chatRepository := repositories.NewChatRepository()
+	chatService := services.NewChatService(chatRepository)
+	chatHandler := handlers.NewChatHandler(chatService)
+
+	return &AppDependencies{UserHandler: userHander, ChatHandler: chatHandler}, nil
 }
