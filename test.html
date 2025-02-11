@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat WebSocket</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #chat-container { display: none; }
+        #messages { border: 1px solid #000; height: 300px; overflow-y: scroll; padding: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Chat WebSocket</h2>
+    <button id="join-btn">Unirse al canal</button>
+    
+    <div id="chat-container">
+        <div id="messages"></div>
+        <input type="text" id="message-input" placeholder="Escribe un mensaje...">
+        <button id="send-btn">Enviar</button>
+    </div>
+    
+    <script>
+        let socket;
+        document.getElementById("join-btn").addEventListener("click", function() {
+            socket = new WebSocket("ws://localhost:8080/ws?room=chatroom1");
+            
+            socket.onopen = function() {
+                document.getElementById("chat-container").style.display = "block";
+                document.getElementById("join-btn").style.display = "none";
+            };
+            
+            socket.onmessage = function(event) {
+		console.log("Mensaje recibido:", event.data);
+                let messageDiv = document.createElement("div");
+                messageDiv.textContent = event.data;
+                document.getElementById("messages").appendChild(messageDiv);
+            };
+        });
+        
+        document.getElementById("send-btn").addEventListener("click", function() {
+            let message = document.getElementById("message-input").value;
+            if (message && socket) {
+                socket.send(message);
+                document.getElementById("message-input").value = "";
+            }
+        });
+    </script>
+</body>
+</html>

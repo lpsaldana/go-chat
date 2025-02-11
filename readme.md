@@ -6,12 +6,10 @@ A simple chat application built with Go that allows multiple users to interact i
 
 - **Real-Time Messaging**: Users can send and receive messages instantly.
 - **Multi-User Support**: Multiple users can join the chat simultaneously.
-- **RESTful API**: Exposes APIs to manage users and messages.
-- **Scalable Architecture**: Built using clean architecture principles for easy scalability and maintenance.
+- **WebSockets**: Uses WebSockets to manage users and sessions to display realtime messages.
 
 ## Tech Stack
 
 - **Backend**: Go (Golang)
-- **Framework**: Gin (for HTTP server)
-- **Database**: MongoDB
+- **Framework**: gorilla/websocket (for WebSockets handlers)
 - **Dependency Management**: Go Modules
